@@ -1,6 +1,5 @@
 package com.simpleSpringBootECommerce.controller;
 
-import com.simpleSpringBootECommerce.model.PriceType;
 import com.simpleSpringBootECommerce.model.Product;
 import com.simpleSpringBootECommerce.service.ProductService;
 import com.simpleSpringBootECommerce.validation.ProductValidation;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @Controller
@@ -32,7 +32,7 @@ public class ProductController {
 	@RequestMapping("/product/form")
 	public ModelAndView form(Product product) {
 		ModelAndView modelAndView = new ModelAndView("product/form");
-		modelAndView.addObject("types", PriceType.values());
+//		modelAndView.addObject("types", PriceType.values());
 		return modelAndView;
 	}
 
@@ -45,6 +45,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/product/addProduct", method = RequestMethod.POST)
 	@CacheEvict(value="products", allEntries=true)
+	@Transactional
 	public ModelAndView addProduct(@Valid Product product, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {

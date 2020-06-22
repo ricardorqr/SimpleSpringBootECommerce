@@ -10,19 +10,20 @@ import java.util.List;
 @Service
 public class ProductService {
 
-	@Autowired
-	ProductRepository productRepository;
-	
-	public Product save(Product product) {
-		return productRepository.save(product);
-	}
+    @Autowired
+    ProductRepository productRepository;
 
-	public Product getProduct(Long id) {
-		return productRepository.getProduct(id);
-	}
-	
-	public List<Product> getAllProducts() {
-		return (List<Product>) productRepository.findAll();
-	}
-	
+    public Product save(Product product) {
+        return productRepository.save(product);
+    }
+
+    public Product getProduct(Long id) {
+//        return productRepository.getProduct(id);
+        return new Product();
+    }
+
+    public List<Product> getAllProducts() {
+        return (List<Product>) productRepository.findAll();
+    }
+
 }

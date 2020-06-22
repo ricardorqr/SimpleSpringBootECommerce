@@ -14,26 +14,26 @@
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input id="title" class="form-control" type="text" th:field="*{title}"/>
-                        <div class="text-danger" th:if="${#fields.hasErrors('title')}"
+                        <div class="font-weight-bold, text-danger" th:if="${#fields.hasErrors('title')}"
                              th:errors="*{title}">Title Error</div>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea id="description" class="form-control" rows="4" cols="20"
                                   th:field="*{description}"></textarea>
-                        <span class="text-danger"  th:if="${#fields.hasErrors('description')}"
+                        <span class="font-weight-bold, text-danger"  th:if="${#fields.hasErrors('description')}"
                               th:errors="*{description}">Description Error</span>
                     </div>
                     <div class="form-group">
                         <label for="pages">Pages</label>
                         <input id="pages" class="form-control" type="text" th:field="*{pages}"/>
-                        <span class="text-danger"  th:if="${#fields.hasErrors('pages')}"
+                        <span class="font-weight-bold, text-danger"  th:if="${#fields.hasErrors('pages')}"
                               th:errors="*{pages}">Pages Error</span>
                     </div>
                     <div class="form-group">
                         <label for="releaseDate">Release Date</label>
                         <input id="releaseDate" class="form-control" type="text" th:field="*{releaseDate}"/>
-                        <span class="text-danger" th:if="${#fields.hasErrors('releaseDate')}"
+                        <span class="font-weight-bold, text-danger" th:if="${#fields.hasErrors('releaseDate')}"
                               th:errors="*{releaseDate}">Release Data Error</span>
                     </div>
                     <div class="form-group" th:each="type, status : ${types}">

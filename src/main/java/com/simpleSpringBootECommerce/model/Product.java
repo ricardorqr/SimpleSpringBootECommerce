@@ -1,122 +1,100 @@
 package com.simpleSpringBootECommerce.model;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+/**
+ * The persistent class for the product database table.
+ */
 @Entity
-public class Product {
+public class Product implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    private static final long serialVersionUID = 1L;
 
-	@NotEmpty
-	private String title;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotEmpty
-	@Size(max = 1000)
-	private String description;
+    private String description;
 
-	@NotEmpty
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
-	private LocalDate releaseDate;
+    private Integer pages;
 
-	@NotEmpty
-	private Integer pages;
+    @Temporal(TemporalType.DATE)
+    private Calendar releaseDate;
 
-	@ElementCollection
-	@NotNull
-	private List<Price> prices;
-	
-	public BigDecimal priceFor(PriceType priceType) {
-	    return prices.stream().filter(price -> price.getPriceType().equals(priceType)).findFirst().get().getValue();
-	}
+    private String title;
 
-	public String getTitle() {
-		return title;
-	}
+    @OneToMany(mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<PriceType> priceTypes;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public Product() {
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public Long getId() {
+        return this.id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Integer getPages() {
-		return pages;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setPages(Integer pages) {
-		this.pages = pages;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Integer getPages() {
+        return this.pages;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setPages(Integer pages) {
+        this.pages = pages;
+    }
 
-	public List<Price> getPrices() {
-		return prices;
-	}
+    public Calendar getReleaseDate() {
+        return this.releaseDate;
+    }
 
-	public void setPrices(List<Price> prices) {
-		this.prices = prices;
-	}
-	public LocalDate getReleaseDate() {
-		return releaseDate;
-	}
+    public void setReleaseDate(Calendar releaseDate) {
+        this.releaseDate = releaseDate;
+    }
 
-	public void setReleaseDate(LocalDate releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-	
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", title=" + title + ", description=" + description + ", releaseDate="
-				+ releaseDate + ", pages=" + pages + ", prices=" + prices + "]";
-	}
+    public String getTitle() {
+        return this.title;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Product other = (Product) obj;
-		if (id == null) {
-            return other.id == null;
-		} else return id.equals(other.id);
+    public List<PriceType> getPriceTypes() {
+        return this.priceTypes;
+    }
+
+    public void setPriceTypes(List<PriceType> priceTypes) {
+        this.priceTypes = priceTypes;
+    }
+
+    public PriceType addPriceType(PriceType priceType) {
+        getPriceTypes().add(priceType);
+        priceType.setProduct(this);
+
+        return priceType;
+    }
+
+    public PriceType removePriceType(PriceType priceType) {
+        getPriceTypes().remove(priceType);
+        priceType.setProduct(null);
+
+        return priceType;
     }
 
 }

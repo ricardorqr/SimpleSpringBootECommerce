@@ -12,13 +12,13 @@ public class CartItem {
 		this.priceType = priceType;
 	}
 
-	public BigDecimal getPrice() {
-		return product.priceFor(priceType);
-	}
+//	public BigDecimal getPrice() {
+//		return product.priceFor(priceType);
+//	}
 
-	public BigDecimal getTotal(int quantity) {
-		return this.getPrice().multiply(new BigDecimal(quantity));
-	}
+//	public BigDecimal getTotal(int quantity) {
+//		return this.getPrice().multiply(new BigDecimal(quantity));
+//	}
 
 	public PriceType getPriceType() {
 		return priceType;

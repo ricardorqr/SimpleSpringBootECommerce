@@ -22,39 +22,39 @@ import javax.servlet.http.HttpSession;
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class CartController {
 
-	@Autowired
-	private ProductService productService;
+    @Autowired
+    private ProductService productService;
 
-	@Autowired
-	private Cart cart;
+    @Autowired
+    private Cart cart;
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.addValidators(new ProductValidation());
-	}
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(new ProductValidation());
+    }
 
-	@RequestMapping(value = "/cart/add", method = RequestMethod.POST)
-	public ModelAndView add(Long productId, PriceType priceType, HttpSession session) {
-		CartItem cartProduct = createItem(productId, priceType);
-		cart.add(cartProduct);
-		session.setAttribute("cart", cart);
-		return new ModelAndView("redirect:/cart");
-	}
+    @RequestMapping(value = "/cart/add", method = RequestMethod.POST)
+    public ModelAndView add(Long productId, PriceType priceType, HttpSession session) {
+        CartItem cartProduct = createItem(productId, priceType);
+        cart.add(cartProduct);
+        session.setAttribute("cart", cart);
+        return new ModelAndView("redirect:/cart");
+    }
 
-	private CartItem createItem(Long produtoId, PriceType priceType) {
-		Product product = productService.getProduct(produtoId);
-		return new CartItem(product, priceType);
-	}
+    private CartItem createItem(Long produtoId, PriceType priceType) {
+        Product product = productService.getProduct(produtoId);
+        return new CartItem(product, priceType);
+    }
 
-	@RequestMapping("/cart")
-	public ModelAndView itens(HttpSession session) {
-		return new ModelAndView("cart/items");
-	}
+    @RequestMapping("/cart")
+    public ModelAndView itens(HttpSession session) {
+        return new ModelAndView("cart/items");
+    }
 
-	@RequestMapping(value = "/cart/remove", method = RequestMethod.POST)
-	public ModelAndView remover(Long productId, PriceType priceType) {
-		cart.remover(productId, priceType);
-		return new ModelAndView("redirect:/cart");
-	}
+    @RequestMapping(value = "/cart/remove", method = RequestMethod.POST)
+    public ModelAndView remover(Long productId, PriceType priceType) {
+        cart.remover(productId, priceType);
+        return new ModelAndView("redirect:/cart");
+    }
 
 }
