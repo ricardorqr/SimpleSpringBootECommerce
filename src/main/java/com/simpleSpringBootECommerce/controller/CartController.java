@@ -42,8 +42,9 @@ public class CartController {
     }
 
     private CartItem createItem(Long produtoId, PriceType priceType) {
-        Product product = productService.getProduct(produtoId);
-        return new CartItem(product, priceType);
+//        Product product = productService.getProduct(produtoId);
+//        return new CartItem(product, priceType);
+        return new CartItem(null, priceType);
     }
 
     @RequestMapping("/cart")

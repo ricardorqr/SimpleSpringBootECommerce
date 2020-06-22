@@ -4,52 +4,52 @@
         <div th:replace="layout/head"/>
     </head>
     <body>
-    <div th:replace="layout/navigation :: navigation"/>
+        <div th:replace="layout/navigation :: navigation"/>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header"><h1>New Product</h1></div>
-            <div class="card-body">
-                <form class="needs-validation" method="POST" th:action="@{/product/addProduct}" th:object="${product}">
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input id="title" class="form-control" type="text" th:field="*{title}"/>
-                        <div class="font-weight-bold, text-danger" th:if="${#fields.hasErrors('title')}"
-                             th:errors="*{title}">Title Error</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea id="description" class="form-control" rows="4" cols="20"
-                                  th:field="*{description}"></textarea>
-                        <span class="font-weight-bold, text-danger"  th:if="${#fields.hasErrors('description')}"
-                              th:errors="*{description}">Description Error</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="pages">Pages</label>
-                        <input id="pages" class="form-control" type="text" th:field="*{pages}"/>
-                        <span class="font-weight-bold, text-danger"  th:if="${#fields.hasErrors('pages')}"
-                              th:errors="*{pages}">Pages Error</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="releaseDate">Release Date</label>
-                        <input id="releaseDate" class="form-control" type="text" th:field="*{releaseDate}"/>
-                        <span class="font-weight-bold, text-danger" th:if="${#fields.hasErrors('releaseDate')}"
-                              th:errors="*{releaseDate}">Release Data Error</span>
-                    </div>
-                    <div class="form-group" th:each="type, status : ${types}">
-                        <label th:for="price + ${status.index}" th:text="${type}"></label>
-                        <input th:id="price + ${status.index}" class="form-control" type="text"
-                               th:name="prices[__${status.index}__].value"/>
-                        <input class="form-control" type="hidden" th:name="prices[__${status.index}__].priceType"
-                               th:value="${type}"/>
-                    </div>
+        <div class="container">
+            <div class="card">
+                <div class="card-header"><h1>New Product</h1></div>
+                <div class="card-body">
+                    <form class="needs-validation" method="POST" th:action="@{/product/addProduct}" th:object="${product}">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input id="title" class="form-control" type="text" th:field="*{title}"/>
+                            <div class="font-weight-bold, text-danger" th:if="${#fields.hasErrors('title')}"
+                                 th:errors="*{title}">Title Error</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" class="form-control" rows="4" cols="20"
+                                      th:field="*{description}"></textarea>
+                            <span class="font-weight-bold, text-danger"  th:if="${#fields.hasErrors('description')}"
+                                  th:errors="*{description}">Description Error</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="pages">Pages</label>
+                            <input id="pages" class="form-control" type="text" th:field="*{pages}"/>
+                            <span class="font-weight-bold, text-danger"  th:if="${#fields.hasErrors('pages')}"
+                                  th:errors="*{pages}">Pages Error</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="releasedate">Release Date</label>
+                            <input id="releasedate" class="form-control" type="text" th:field="*{releasedate}"/>
+                            <span class="font-weight-bold, text-danger" th:if="${#fields.hasErrors('releasedate')}"
+                                  th:errors="*{releasedate}">Release Data Error</span>
+                        </div>
+    <!--                    <div class="form-group" th:each="type, status : ${types}">-->
+    <!--                        <label th:for="price + ${status.index}" th:text="${type}"></label>-->
+    <!--                        <input th:id="price + ${status.index}" class="form-control" type="text"-->
+    <!--                               th:name="prices[__${status.index}__].value"/>-->
+    <!--                        <input class="form-control" type="hidden" th:name="prices[__${status.index}__].priceType"-->
+    <!--                               th:value="${type}"/>-->
+    <!--                    </div>-->
 
-                    <input type="submit" class="btn btn-primary" value="Upload"/>
-                </form>
+                        <input type="submit" class="btn btn-primary" value="Save"/>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div th:replace="layout/footer"/>
+        <div th:replace="layout/footer"/>
     </body>
 </html>

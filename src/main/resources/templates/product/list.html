@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<div th:replace="layout/head"/>
+		<div th:replace="layout/head" />
 	</head>
 	<body>
-		<div th:replace="layout/navigation :: navigation"/>
+		<div th:replace="layout/navigation :: navigation" />
 
 		<div class="container">
 			<div class="card">
@@ -29,7 +29,7 @@
 							<td><span th:text="${product.id}"></span></td>
 							<td><a href="#" th:href="@{/product/detail/} + ${product.id}" th:text="${product.title}"></a></td>
 							<td><span th:text="${product.description}"></span></td>
-							<td><span th:text="${product.releaseDate}"></span></td>
+							<td><span th:text="${product.releasedate}"></span></td>
 							<td><span th:text="${product.pages}"></span></td>
 <!--							<td><span th:text="${product.prices.priceType}"></span></td>-->
 <!--							<td><span th:text="${product.prices.value}"></span></td>-->
@@ -39,6 +39,6 @@
 			</div>
 		</div>
 
-		<div th:replace="layout/footer"/>
+		<div th:replace="layout/footer" />
 	</body>
 </html>

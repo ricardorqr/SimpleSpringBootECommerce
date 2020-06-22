@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <div th:replace="layout/head"/>
+    </head>
+    <body>
+        <div th:replace="layout/navigation :: navigation"/>
+
+        <div class="container">
+            <div class="card">
+                <div class="card-header"><h1>New Type</h1></div>
+                <div class="card-body">
+                    <form class="needs-validation" method="POST" th:action="@{/type/addType}" th:object="${type}">
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <input id="type" class="form-control" type="text" th:field="*{type}"/>
+                            <div class="font-weight-bold, text-danger" th:if="${#fields.hasErrors('type')}"
+                                 th:errors="*{type}">Title Error</div>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" value="Save"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="layout/footer"/>
+    </body>
+</html>

@@ -1,9 +1,12 @@
 package com.simpleSpringBootECommerce.controller;
 
 import com.simpleSpringBootECommerce.model.Product;
+import com.simpleSpringBootECommerce.model.Type;
 import com.simpleSpringBootECommerce.repository.ProductRepository;
+import com.simpleSpringBootECommerce.repository.TypeRepository;
 import com.simpleSpringBootECommerce.service.ProductService;
 import com.simpleSpringBootECommerce.validation.ProductValidation;
+import com.simpleSpringBootECommerce.validation.TypeValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
@@ -18,57 +21,54 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
-public class ProductController {
+public class TypeController {
 
-//	@Autowired
-//	private ProductService productService;
 	@Autowired
-	private ProductRepository productRepository;
+	private TypeRepository typeRepository;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.addValidators(new ProductValidation());
+		binder.addValidators(new TypeValidation());
 	}
 
-	@RequestMapping("/product/form")
-	public ModelAndView form(Product product) {
-		ModelAndView modelAndView = new ModelAndView("product/form");
-//		modelAndView.addObject("types", productRepository.getAllProductType());
-//		System.out.println(productRepository.getAllProductType());
+	@RequestMapping("/type/form")
+	public ModelAndView form(Type type) {
+		ModelAndView modelAndView = new ModelAndView("type/form");
+		modelAndView.addObject("types", typeRepository.findAll());
+		System.out.println(typeRepository.findAll());
 		return modelAndView;
 	}
 
-	@RequestMapping("/product/list")
+	@RequestMapping("/type/list")
 	public ModelAndView list() {
-		ModelAndView modelAndView = new ModelAndView("product/list");
-		modelAndView.addObject("products", productRepository.findAll());
+		ModelAndView modelAndView = new ModelAndView("type/list");
+		modelAndView.addObject("types", typeRepository.findAll());
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/product/addProduct", method = RequestMethod.POST)
+	@RequestMapping(value = "/type/addType", method = RequestMethod.POST)
 //	@CacheEvict(value="products", allEntries=true)
 	@Transactional
-	public ModelAndView addProduct(@Valid Product product, BindingResult bindingResult,
+	public ModelAndView add(@Valid Type type, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
-			return form(product);
+			return form(type);
 		}
 
-		productRepository.save(product);
-		redirectAttributes.addFlashAttribute("success", "New product inserted");
+		typeRepository.save(type);
+		redirectAttributes.addFlashAttribute("success", "New type inserted");
 		ModelAndView modelAndView = new ModelAndView("redirect:list");
 		return modelAndView;
 	}
-	
-	@RequestMapping("/product/detail/{id}")
-	public ModelAndView detail(@PathVariable("id") Long id){
-	    ModelAndView modelAndView = new ModelAndView("product/detail");
-	    Product product = productRepository.findById(id).orElse(null);
-	    modelAndView.addObject("product", product);
-	    return modelAndView;
-	}
+//
+//	@RequestMapping("/product/detail/{id}")
+//	public ModelAndView detalhe(@PathVariable("id") Long id){
+//	    ModelAndView modelAndView = new ModelAndView("product/detail");
+//	    Product product = productService.getProduct(id);
+//	    modelAndView.addObject("product", product);
+//	    return modelAndView;
+//	}
 
 }

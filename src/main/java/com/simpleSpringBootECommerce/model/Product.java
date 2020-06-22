@@ -1,7 +1,12 @@
 package com.simpleSpringBootECommerce.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,14 +22,14 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty
     private String description;
-
+    @NotNull
     private Integer pages;
-
-    @Temporal(TemporalType.DATE)
-    private Calendar releaseDate;
-
+    @NotNull
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    private LocalDate releasedate;
+    @NotEmpty
     private String title;
 
     @OneToMany(mappedBy = "product",
@@ -33,6 +38,7 @@ public class Product implements Serializable {
     private List<PriceType> priceTypes;
 
     public Product() {
+
     }
 
     public Long getId() {
@@ -59,12 +65,12 @@ public class Product implements Serializable {
         this.pages = pages;
     }
 
-    public Calendar getReleaseDate() {
-        return this.releaseDate;
+    public LocalDate getReleasedate() {
+        return this.releasedate;
     }
 
-    public void setReleaseDate(Calendar releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setReleasedate(LocalDate releasedate) {
+        this.releasedate = releasedate;
     }
 
     public String getTitle() {

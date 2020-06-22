@@ -15,7 +15,7 @@ public class ProductValidation implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "field.required");
-//		ValidationUtils.rejectIfEmpty(errors, "description", "field.required");
+		ValidationUtils.rejectIfEmpty(errors, "description", "field.required");
 
 		Product product = (Product) target;
 		if (product.getPages() == null || product.getPages() <= 0) {
