@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <div th:replace="layout/head"/>
-    </head>
+    <head th:replace="layout/head :: head" />
     <body>
-        <div th:replace="layout/navigation :: navigation"/>
-
+        <div th:replace="layout/navigation :: navigation" />
         <div class="container">
             <div class="card">
                 <div class="card-header"><h1>Details</h1></div>
@@ -15,8 +12,7 @@
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img class="card-img"
-                                             src="../../imagens/java8.png"/>
+                                        <img class="card-img" src="../../imagens/java8.png"/>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -53,7 +49,6 @@
                 </div>
             </div>
         </div>
-
         <div th:replace="layout/footer"/>
     </body>
 </html>

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<div th:replace="layout/head"/>
-	</head>
+<head th:replace="layout/head :: head" />
 	<body>
-		<div th:replace="layout/navigation :: navigation"/>
-
+		<div th:replace="layout/navigation :: navigation" />
 		<div class="container">
 			<div class="card">
 				<div class="card-header">
@@ -28,7 +25,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div th:replace="layout/footer"/>
 	</body>
 </html>
