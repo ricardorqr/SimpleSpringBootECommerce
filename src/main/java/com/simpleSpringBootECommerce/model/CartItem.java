@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 
 public class CartItem {
 
-	private PriceType priceType;
+	private Pricetype priceType;
 	private Product product;
 
-	public CartItem(Product product, PriceType priceType) {
+	public CartItem(Product product, Pricetype priceType) {
 		this.product = product;
 		this.priceType = priceType;
 	}
@@ -20,11 +20,11 @@ public class CartItem {
 //		return this.getPrice().multiply(new BigDecimal(quantity));
 //	}
 
-	public PriceType getPriceType() {
+	public Pricetype getPriceType() {
 		return priceType;
 	}
 
-	public void setPriceType(PriceType priceType) {
+	public void setPriceType(Pricetype priceType) {
 		this.priceType = priceType;
 	}
 

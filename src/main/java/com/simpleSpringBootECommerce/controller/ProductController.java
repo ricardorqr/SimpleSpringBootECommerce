@@ -2,6 +2,7 @@ package com.simpleSpringBootECommerce.controller;
 
 import com.simpleSpringBootECommerce.model.Product;
 import com.simpleSpringBootECommerce.repository.ProductRepository;
+import com.simpleSpringBootECommerce.repository.TypeRepository;
 import com.simpleSpringBootECommerce.service.ProductService;
 import com.simpleSpringBootECommerce.validation.ProductValidation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,12 @@ import java.util.Optional;
 @Controller
 public class ProductController {
 
-//	@Autowired
-//	private ProductService productService;
+	@Autowired
+	private ProductService productService;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private TypeRepository typeRepository;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -36,8 +39,7 @@ public class ProductController {
 	@RequestMapping("/product/form")
 	public ModelAndView form(Product product) {
 		ModelAndView modelAndView = new ModelAndView("product/form");
-//		modelAndView.addObject("types", productRepository.getAllProductType());
-//		System.out.println(productRepository.getAllProductType());
+		modelAndView.addObject("types", typeRepository.findAll());
 		return modelAndView;
 	}
 
@@ -57,7 +59,7 @@ public class ProductController {
 			return form(product);
 		}
 
-		productRepository.save(product);
+		productService.save(product);
 		redirectAttributes.addFlashAttribute("success", "New product inserted");
 		ModelAndView modelAndView = new ModelAndView("redirect:list");
 		return modelAndView;

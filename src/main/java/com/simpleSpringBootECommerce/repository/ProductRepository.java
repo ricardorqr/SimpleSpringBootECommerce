@@ -14,7 +14,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 //    @Query(value = " select distinct(p) from Product p join fetch p.prices where p.id = :id ", nativeQuery = false)
 //    Product getProduct(@Param("id") Long id);
 //
-//    @Query(value = " select p.priceTypes from Product p ", nativeQuery = false)
+//    @Query(value = " select p from Product p fetch p.priceTypes", nativeQuery = false)
 //    List<Type> getAllProductType();
 
 }

@@ -19,9 +19,9 @@ public class HomeController {
 	@RequestMapping("/")
 	@Cacheable(value = "products")
 	public ModelAndView index() {
-		List<Product> products = productService.getAllProducts();
+//		List<Product> products = productService.getAllProducts();
 		ModelAndView modelAndView = new ModelAndView("index");
-		modelAndView.addObject("products", products);
+//		modelAndView.addObject("products", products);
 		return modelAndView;
 	}
 	

@@ -7,7 +7,7 @@ import javax.persistence.*;
  * The primary key class for the pricetype database table.
  */
 @Embeddable
-public class PriceTypePK implements Serializable {
+public class PricetypePK implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,7 +17,7 @@ public class PriceTypePK implements Serializable {
     @Column(name = "type_id")
     private Long typeId;
 
-    public PriceTypePK() {
+    public PricetypePK() {
 
     }
 
@@ -37,10 +37,10 @@ public class PriceTypePK implements Serializable {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof PriceTypePK)) {
+        if (!(other instanceof PricetypePK)) {
             return false;
         }
-        PriceTypePK castOther = (PriceTypePK) other;
+        PricetypePK castOther = (PricetypePK) other;
         return
                 (this.productId == castOther.productId)
                         && (this.typeId == castOther.typeId);
@@ -49,8 +49,8 @@ public class PriceTypePK implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int hash = 17;
-        hash = hash * prime + Long.hashCode(this.productId);
-        hash = hash * prime + Long.hashCode(this.typeId);
+        hash = hash * prime + this.productId.hashCode();
+        hash = hash * prime + this.typeId.hashCode();
         return hash;
     }
 

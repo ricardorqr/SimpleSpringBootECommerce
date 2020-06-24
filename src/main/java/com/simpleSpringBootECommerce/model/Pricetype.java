@@ -9,12 +9,12 @@ import java.math.BigDecimal;
  * The persistent class for the pricetype database table.
  */
 @Entity
-public class PriceType implements Serializable {
+public class Pricetype implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private PriceTypePK id;
+    private PricetypePK id;
     private BigDecimal value;
 
     @ManyToOne(cascade = {CascadeType.ALL})
@@ -25,15 +25,15 @@ public class PriceType implements Serializable {
     @MapsId("type_id")
     private Type type;
 
-    public PriceType() {
+    public Pricetype() {
 
     }
 
-    public PriceTypePK getId() {
+    public PricetypePK getId() {
         return this.id;
     }
 
-    public void setId(PriceTypePK id) {
+    public void setId(PricetypePK id) {
         this.id = id;
     }
 

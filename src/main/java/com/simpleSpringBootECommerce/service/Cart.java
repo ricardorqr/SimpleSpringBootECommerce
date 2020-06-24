@@ -1,14 +1,13 @@
 package com.simpleSpringBootECommerce.service;
 
 import com.simpleSpringBootECommerce.model.CartItem;
-import com.simpleSpringBootECommerce.model.PriceType;
+import com.simpleSpringBootECommerce.model.Pricetype;
 import com.simpleSpringBootECommerce.model.Product;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -54,7 +53,7 @@ public class Cart implements Serializable {
         return items.keySet();
     }
 
-    public void remover(Long productId, PriceType priceType) {
+    public void remover(Long productId, Pricetype priceType) {
         Product product = new Product();
         product.setId(productId);
         items.remove(new CartItem(product, priceType));
