@@ -52,18 +52,18 @@ public class Type implements Serializable {
         this.priceTypes = priceTypes;
     }
 
-    public Pricetype addPriceType(Pricetype priceType) {
-        getPriceTypes().add(priceType);
-        priceType.setType(this);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Type)) return false;
 
-        return priceType;
+        Type type = (Type) o;
+
+        return getId() != null ? getId().equals(type.getId()) : type.getId() == null;
     }
 
-    public Pricetype removePriceType(Pricetype priceType) {
-        getPriceTypes().remove(priceType);
-        priceType.setType(null);
-
-        return priceType;
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
     }
-
 }

@@ -61,4 +61,18 @@ public class Pricetype implements Serializable {
         this.type = type;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pricetype)) return false;
+
+        Pricetype pricetype = (Pricetype) o;
+
+        return getId() != null ? getId().equals(pricetype.getId()) : pricetype.getId() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
+    }
 }

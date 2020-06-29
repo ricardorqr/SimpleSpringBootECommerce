@@ -18,6 +18,7 @@
 						<tr>
 							<th></th>
 							<th width="65%">Item</th>
+							<th width="65%">Type</th>
 							<th width="10%">Price</th>
 							<th width="10%">Quantity</th>
 							<th width="10%">Total</th>
@@ -25,21 +26,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="item : ${session.cart?.items}">
-							<td>
-								<img width="71px" height="100px"
-									src="../imagens/java8.png" />
-							</td>
-							<td><span th:text="${item.product?.title}"></span></td>
-							<td><span th:text="${item.price}"></span></td>
-							<td>
-								<input type="number" min="0" name="quantity" th:value="${session.cart.getQuantity(item)}" />
-							</td>
-							<td><span th:text="${session.cart.getTotal(item)}"></span></td>
+						<tr th:each="cartItem : ${session.cart?.items}">
+							<td><img width="71px" height="100px" src="../imagens/java8.png" /></td>
+							<td><span th:text="${cartItem.product.title}"></span></td>
+							<td><span th:text="${cartItem.type.type}"></span></td>
+							<td><span th:text="${cartItem.price}"></span></td>
+							<td><span th:text="${session.cart.getQuantity(cartItem)}"></span></td>
+							<td><span th:text="${session.cart.getTotal(cartItem)}"></span></td>
 							<td>
 								<form th:action="@{/cart/remove}" method="post">
-									<input type="hidden" name="productId" th:value="${item.product.id}" />
-									<input type="hidden" name="priceType" th:value="${item.priceType}" />
+									<input type="hidden" name="productId" th:value="${cartItem.product.id}" />
+									<input type="hidden" name="typeId" th:value="${cartItem.type.id}" />
 									<input type="image" src="../imagens/excluir.png" alt="Excluir" title="Excluir" />
 								</form>
 							</td>

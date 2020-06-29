@@ -33,25 +33,22 @@ public class PricetypePK implements Serializable {
         this.typeId = typeId;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof PricetypePK)) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PricetypePK)) return false;
+
+        PricetypePK that = (PricetypePK) o;
+
+        if (getProductId() != null ? !getProductId().equals(that.getProductId()) : that.getProductId() != null)
             return false;
-        }
-        PricetypePK castOther = (PricetypePK) other;
-        return
-                (this.productId == castOther.productId)
-                        && (this.typeId == castOther.typeId);
+        return getTypeId() != null ? getTypeId().equals(that.getTypeId()) : that.getTypeId() == null;
     }
 
+    @Override
     public int hashCode() {
-        final int prime = 31;
-        int hash = 17;
-        hash = hash * prime + this.productId.hashCode();
-        hash = hash * prime + this.typeId.hashCode();
-        return hash;
+        int result = getProductId() != null ? getProductId().hashCode() : 0;
+        result = 31 * result + (getTypeId() != null ? getTypeId().hashCode() : 0);
+        return result;
     }
-
 }

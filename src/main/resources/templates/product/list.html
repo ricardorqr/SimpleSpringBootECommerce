@@ -18,19 +18,24 @@
 								<th>Description</th>
 								<th>Release Date</th>
 								<th>Pages</th>
-<!--								<th>Type</th>-->
-<!--								<th>Price</th>-->
+								<th>Prices</th>
 							</tr>
 						</thead>
+						<tbody>
+
 						<tr th:each="product : ${products}">
 							<td><span th:text="${product.id}"></span></td>
 							<td><a th:href="@{/product/detail/} + ${product.id}" th:text="${product.title}"></a></td>
 							<td><span th:text="${product.description}"></span></td>
 							<td><span th:text="${product.releasedate}"></span></td>
 							<td><span th:text="${product.pages}"></span></td>
-<!--							<td><span th:text="${product.prices.priceType}"></span></td>-->
-<!--							<td><span th:text="${product.prices.value}"></span></td>-->
+							<td>
+								<span th:each="pricetype : ${product.pricetypes}">
+									<div th:text="${pricetype.type.type} + ': '+ ${pricetype.value}"></div>
+								</span>
+							</td>
 						</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>

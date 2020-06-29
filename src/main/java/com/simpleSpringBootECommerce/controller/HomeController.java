@@ -1,6 +1,7 @@
 package com.simpleSpringBootECommerce.controller;
 
 import com.simpleSpringBootECommerce.model.Product;
+import com.simpleSpringBootECommerce.repository.ProductRepository;
 import com.simpleSpringBootECommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -14,14 +15,14 @@ import java.util.List;
 public class HomeController {
 
 	@Autowired
-	private ProductService productService;
+	private ProductRepository productRepository;
 
 	@RequestMapping("/")
-	@Cacheable(value = "products")
+//	@Cacheable(value = "products")
 	public ModelAndView index() {
-//		List<Product> products = productService.getAllProducts();
+		List<Product> products = (List<Product>) productRepository.findAll();
 		ModelAndView modelAndView = new ModelAndView("index");
-//		modelAndView.addObject("products", products);
+		modelAndView.addObject("products", products);
 		return modelAndView;
 	}
 	

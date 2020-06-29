@@ -35,7 +35,7 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<Pricetype> priceTypes;
+    private List<Pricetype> pricetypes;
 
     public Product() {
 
@@ -81,26 +81,26 @@ public class Product implements Serializable {
         this.title = title;
     }
 
-    public List<Pricetype> getPriceTypes() {
-        return this.priceTypes;
+    public List<Pricetype> getPricetypes() {
+        return this.pricetypes;
     }
 
-    public void setPriceTypes(List<Pricetype> priceTypes) {
-        this.priceTypes = priceTypes;
+    public void setPricetypes(List<Pricetype> pricetypes) {
+        this.pricetypes = pricetypes;
     }
 
-    public Pricetype addPriceType(Pricetype priceType) {
-        getPriceTypes().add(priceType);
-        priceType.setProduct(this);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
 
-        return priceType;
+        Product product = (Product) o;
+
+        return getId() != null ? getId().equals(product.getId()) : product.getId() == null;
     }
 
-    public Pricetype removePriceType(Pricetype priceType) {
-        getPriceTypes().remove(priceType);
-        priceType.setProduct(null);
-
-        return priceType;
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
     }
-
 }

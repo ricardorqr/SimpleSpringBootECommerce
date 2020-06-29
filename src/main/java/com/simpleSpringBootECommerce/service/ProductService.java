@@ -24,9 +24,9 @@ public class ProductService {
     private PricetypesRepository pricetypesRepository;
 
     public Product save(Product productAuxiliar) {
-        List<Pricetype> priceTypes = productAuxiliar.getPriceTypes();
+        List<Pricetype> priceTypes = productAuxiliar.getPricetypes();
         Product product = productAuxiliar;
-        product.setPriceTypes(null);
+        product.setPricetypes(null);
         product = productRepository.save(product);
 
         for (Pricetype priceType : priceTypes) {

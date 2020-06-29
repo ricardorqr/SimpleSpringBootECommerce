@@ -33,14 +33,15 @@
                                 <input type="hidden" name="productId" th:value="${product.id}"/>
 
                                 <div class="row">
-    <!--                                <div class="col" th:each="price : ${product.prices}">-->
-    <!--                                    <input type="radio" name="priceType" th:id="${price.priceType}"-->
-    <!--                                           th:value="${price.priceType}" checked="checked"/>-->
-    <!--                                    <label th:for="${price.priceType}"><span th:text="${price.priceType}"></span></label>-->
-    <!--                                    <p th:text="${price.value}"></p>-->
-    <!--                                </div>-->
+                                    <div class="col" th:each="pricetype : ${product.pricetypes}">
+                                        <input type="hidden" name="value" th:value="${pricetype.value}"/>
+                                        <input type="radio" name="typeId" th:id="${pricetype.type.type}"
+                                               th:value="${pricetype.type.id}" />
+                                        <label th:for="${pricetype.type.type}"><span th:text="${pricetype.type.type}"></span></label>
+                                        <p th:text="${pricetype.value}"></p>
+                                    </div>
                                     <div class="col">
-                                        <input type="submit" class="btn btn-primary" value="Buy"/>
+                                        <input type="submit" class="btn btn-primary" value="Add to cart"/>
                                     </div>
                                 </div>
                             </form>

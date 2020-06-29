@@ -1,5 +1,6 @@
 package com.simpleSpringBootECommerce.controller;
 
+import com.simpleSpringBootECommerce.model.Pricetype;
 import com.simpleSpringBootECommerce.model.Product;
 import com.simpleSpringBootECommerce.repository.ProductRepository;
 import com.simpleSpringBootECommerce.repository.TypeRepository;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller

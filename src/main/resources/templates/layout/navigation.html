@@ -36,7 +36,7 @@
 						</li>
 						<li class="nav-item">
 							<a href="/cart" class="nav-link">
-								Cart<span th:text="' (' + ${session.cart?.quantity} + ')'" th:unless="${session.cart == null}"></span></a>
+								Cart<span th:text="' (' + ${session.cart.quantity} + ')'" th:unless="${session.cart == null}"></span></a>
 						</li>
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
