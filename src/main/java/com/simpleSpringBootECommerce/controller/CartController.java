@@ -1,7 +1,6 @@
 package com.simpleSpringBootECommerce.controller;
 
 import com.simpleSpringBootECommerce.model.CartItem;
-import com.simpleSpringBootECommerce.model.Pricetype;
 import com.simpleSpringBootECommerce.model.Product;
 import com.simpleSpringBootECommerce.model.Type;
 import com.simpleSpringBootECommerce.repository.ProductRepository;
@@ -52,11 +51,8 @@ public class CartController {
     }
 
     @RequestMapping("/cart")
-    public ModelAndView itens(HttpSession session) {
-        Cart cart = (Cart) session.getAttribute("cart");
-        ModelAndView modelAndView = new ModelAndView("cart/items");
-        modelAndView.addObject("cart", cart);
-        return modelAndView;
+    public ModelAndView items(HttpSession session) {
+        return new ModelAndView("cart/items");
     }
 
     @RequestMapping(value = "/cart/remove", method = RequestMethod.POST)
