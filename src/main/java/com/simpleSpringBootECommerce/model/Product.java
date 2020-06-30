@@ -31,6 +31,8 @@ public class Product implements Serializable {
     private LocalDate releasedate;
     @NotEmpty
     private String title;
+    @NotEmpty
+    private String icon;
 
     @OneToMany(mappedBy = "product",
             cascade = CascadeType.ALL,
@@ -40,6 +42,10 @@ public class Product implements Serializable {
     public Product() {
 
     }
+
+    public String getIcon() { return icon; }
+
+    public void setIcon(String icon) { this.icon = icon; }
 
     public Long getId() {
         return this.id;

@@ -3,7 +3,42 @@
     <head th:replace="layout/head :: head" />
     <body>
         <div th:replace="layout/navigation :: navigation"/>
-
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Items</h1>
+                    <span class="text-success" th:text="${success}"></span>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <tbody>
+                            <tr th:each="product : ${products}">
+                                <div class="card mb-3">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-2">
+                                            <a th:href="@{/product/detail/} + ${product.id}">
+                                                <img class="card-img" th:src="'../../imagens/' + ${product.icon}" />
+                                            </a>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <a th:href="@{/product/detail/} + ${product.id}" th:text="${product.title}">
+                                                    <h5 th:text="${product.title}"></h5>
+                                                </a>
+                                                <p class="card-text" th:text="${product.description}"></p>
+                                                <p class="card-text">Pages: <span th:text="${product.pages}"></span></p>
+                                                <p class="card-text">Release Date: <span th:text="${product.releasedate}"></span></p>
+                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         <div th:replace="layout/footer :: footer "/>
     </body>
 </html>

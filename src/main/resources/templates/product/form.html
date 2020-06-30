@@ -33,12 +33,18 @@
                             <span class="font-weight-bold, text-danger" th:if="${#fields.hasErrors('releasedate')}"
                                   th:errors="*{releasedate}">Release Data Error</span>
                         </div>
+                        <div class="form-group">
+                            <label for="icon">Icon</label>
+                            <input id="icon" class="form-control" type="text" th:field="*{icon}"/>
+                            <span class="font-weight-bold, text-danger" th:if="${#fields.hasErrors('icon')}"
+                                  th:errors="*{icon}">Release Data Error</span>
+                        </div>
                         <div class="form-group" th:each="type, status : ${types}">
-                            <label th:for="priceTypes + ${status.index}" th:text="${type.type}"></label>
-                            <input th:id="priceTypes + ${status.index}" class="form-control" type="text"
-                                   th:name="priceTypes[__${status.index}__].value"/>
+                            <label th:for="pricetypes + ${status.index}" th:text="${type.type}"></label>
+                            <input th:id="pricetypes + ${status.index}" class="form-control" type="text"
+                                   th:name="pricetypes[__${status.index}__].value"/>
                             <input class="form-control" type="hidden" th:value="${type.id}"
-                                   th:name="priceTypes[__${status.index}__].id.typeId"/>
+                                   th:name="pricetypes[__${status.index}__].id.typeId"/>
                         </div>
 
                         <input type="submit" class="btn btn-primary" value="Save"/>

@@ -1,13 +1,12 @@
 package com.simpleSpringBootECommerce.controller;
 
-import com.simpleSpringBootECommerce.model.Pricetype;
+import com.simpleSpringBootECommerce.controller.dto.CartDTO;
 import com.simpleSpringBootECommerce.model.Product;
 import com.simpleSpringBootECommerce.repository.ProductRepository;
 import com.simpleSpringBootECommerce.repository.TypeRepository;
 import com.simpleSpringBootECommerce.service.ProductService;
 import com.simpleSpringBootECommerce.validation.ProductValidation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -20,8 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ProductController {
@@ -33,7 +30,7 @@ public class ProductController {
 	@Autowired
 	private TypeRepository typeRepository;
 
-	@InitBinder
+	@InitBinder("product")
 	public void initBinder(WebDataBinder binder) {
 		binder.addValidators(new ProductValidation());
 	}
@@ -71,7 +68,10 @@ public class ProductController {
 	public ModelAndView detail(@PathVariable("id") Long id){
 	    ModelAndView modelAndView = new ModelAndView("product/detail");
 	    Product product = productRepository.findById(id).orElse(null);
+	    CartDTO cartDTO = new CartDTO();
+	    cartDTO.setTypeId(1L);
 	    modelAndView.addObject("product", product);
+		modelAndView.addObject("cartDTO", cartDTO);
 	    return modelAndView;
 	}
 

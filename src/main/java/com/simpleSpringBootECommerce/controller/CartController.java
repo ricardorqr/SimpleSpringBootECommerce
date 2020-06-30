@@ -1,17 +1,15 @@
 package com.simpleSpringBootECommerce.controller;
 
+import com.simpleSpringBootECommerce.controller.dto.CartDTO;
 import com.simpleSpringBootECommerce.model.CartItem;
 import com.simpleSpringBootECommerce.model.Product;
 import com.simpleSpringBootECommerce.model.Type;
 import com.simpleSpringBootECommerce.repository.ProductRepository;
 import com.simpleSpringBootECommerce.repository.TypeRepository;
 import com.simpleSpringBootECommerce.service.Cart;
-import com.simpleSpringBootECommerce.validation.ProductValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
@@ -31,14 +29,9 @@ public class CartController {
     @Autowired
     private Cart cart;
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.addValidators(new ProductValidation());
-    }
-
     @RequestMapping(value = "/cart/add", method = RequestMethod.POST)
-    public ModelAndView add(Long productId, Long typeId, BigDecimal value, HttpSession session) {
-        CartItem item = createItem(productId, typeId, value);
+    public ModelAndView add(CartDTO cartDTO, HttpSession session) {
+        CartItem item = createItem(cartDTO.getProductId(), cartDTO.getTypeId(), cartDTO.getPrice());
         cart.add(item);
         session.setAttribute("cart", cart);
         return new ModelAndView("redirect:/cart");

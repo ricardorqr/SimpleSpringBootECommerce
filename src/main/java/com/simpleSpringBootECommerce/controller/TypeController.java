@@ -51,8 +51,7 @@ public class TypeController {
 	@RequestMapping(value = "/type/addType", method = RequestMethod.POST)
 //	@CacheEvict(value="products", allEntries=true)
 	@Transactional
-	public ModelAndView add(@Valid Type type, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes) {
+	public ModelAndView add(@Valid Type type, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 			return form(type);
 		}
@@ -62,13 +61,5 @@ public class TypeController {
 		ModelAndView modelAndView = new ModelAndView("redirect:list");
 		return modelAndView;
 	}
-//
-//	@RequestMapping("/product/detail/{id}")
-//	public ModelAndView detalhe(@PathVariable("id") Long id){
-//	    ModelAndView modelAndView = new ModelAndView("product/detail");
-//	    Product product = productService.getProduct(id);
-//	    modelAndView.addObject("product", product);
-//	    return modelAndView;
-//	}
 
 }

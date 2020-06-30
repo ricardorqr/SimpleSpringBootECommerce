@@ -23,7 +23,7 @@ public class Type implements Serializable {
     @OneToMany(mappedBy = "type",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<Pricetype> priceTypes;
+    private List<Pricetype> pricetypes;
 
     public Type() {
     }
@@ -44,12 +44,12 @@ public class Type implements Serializable {
         this.type = type;
     }
 
-    public List<Pricetype> getPriceTypes() {
-        return this.priceTypes;
+    public List<Pricetype> getPricetypes() {
+        return this.pricetypes;
     }
 
-    public void setPriceTypes(List<Pricetype> priceTypes) {
-        this.priceTypes = priceTypes;
+    public void setPricetypes(List<Pricetype> pricetypes) {
+        this.pricetypes = pricetypes;
     }
 
     @Override

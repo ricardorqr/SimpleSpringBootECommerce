@@ -19,7 +19,7 @@
 						</thead>
 						<tr th:each="type : ${types}">
 							<td><span th:text="${type.id}"></span></td>
-							<td><a href="#" th:href="@{/type/detail/} + ${type.id}" th:text="${type.type}"></a></td>
+							<td><span th:text="${type.type}"></span></td>
 						</tr>
 					</table>
 				</div>

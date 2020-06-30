@@ -8,6 +8,11 @@ public class CartItem {
     private Type type;
     private BigDecimal price;
 
+    public CartItem() {
+        this.product = new Product();
+        this.type = new Type();
+    }
+
     public CartItem(Product product, Type type, BigDecimal price) {
         this.product = product;
         this.type = type;

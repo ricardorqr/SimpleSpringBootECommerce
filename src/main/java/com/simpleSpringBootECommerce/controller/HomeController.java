@@ -1,10 +1,9 @@
 package com.simpleSpringBootECommerce.controller;
 
+import com.simpleSpringBootECommerce.model.CartItem;
 import com.simpleSpringBootECommerce.model.Product;
 import com.simpleSpringBootECommerce.repository.ProductRepository;
-import com.simpleSpringBootECommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
